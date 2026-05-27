@@ -428,11 +428,158 @@
         margin-top: 18px;
       }
       .price b { font-size: 46px; }
+      .demo-reel {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 1fr);
+        gap: 16px;
+        align-items: stretch;
+      }
+      .reel-stage {
+        position: relative;
+        min-height: 460px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background:
+          linear-gradient(rgba(8, 17, 34, 0.72), rgba(8, 17, 34, 0.9)),
+          radial-gradient(circle at 24% 18%, rgba(56, 232, 255, 0.22), transparent 26%),
+          radial-gradient(circle at 78% 78%, rgba(167, 139, 250, 0.2), transparent 30%);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+      }
+      .reel-stage::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, transparent 0 48%, rgba(56, 232, 255, 0.16) 49% 51%, transparent 52% 100%),
+          repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 8px);
+        animation: reelScan 7s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .reel-frame {
+        position: absolute;
+        inset: 18px;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 14px;
+        padding: 18px;
+        border: 1px solid rgba(56, 232, 255, 0.18);
+        border-radius: 8px;
+        background: rgba(6, 11, 20, 0.48);
+      }
+      .reel-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 900;
+      }
+      .reel-scene {
+        display: grid;
+        align-content: center;
+        gap: 12px;
+      }
+      .reel-bubble {
+        width: min(100%, 420px);
+        padding: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        animation: bubbleRise 9s ease-in-out infinite;
+      }
+      .reel-bubble:nth-child(2) {
+        margin-left: auto;
+        animation-delay: -3s;
+      }
+      .reel-bubble:nth-child(3) {
+        animation-delay: -6s;
+      }
+      .reel-bubble strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+      .reel-bubble p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .reel-progress {
+        height: 8px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.09);
+      }
+      .reel-progress span {
+        display: block;
+        width: 38%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--cyan), var(--green), var(--purple));
+        animation: reelProgress 6s ease-in-out infinite;
+      }
+      .compare {
+        display: grid;
+        gap: 16px;
+      }
+      .compare-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 220px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        backdrop-filter: blur(16px);
+      }
+      .compare-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(115deg, transparent 0%, rgba(56, 232, 255, 0.12) 44%, transparent 58%);
+        transform: translateX(-120%);
+        animation: panelSweep 8s ease-in-out infinite;
+      }
+      .compare-card.premium::after {
+        background: linear-gradient(115deg, transparent 0%, rgba(60, 255, 180, 0.14) 44%, transparent 58%);
+      }
+      .compare-card h3 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .tag {
+        padding: 6px 9px;
+        border-radius: 999px;
+        color: #06121f;
+        background: var(--cyan);
+        font-size: 12px;
+        font-weight: 950;
+      }
+      .compare-card.premium .tag {
+        background: var(--green);
+      }
+      @keyframes reelScan {
+        0%, 100% { transform: translateX(-18%); opacity: 0.28; }
+        50% { transform: translateX(18%); opacity: 0.58; }
+      }
+      @keyframes bubbleRise {
+        0%, 100% { transform: translateY(0); opacity: 0.78; }
+        50% { transform: translateY(-8px); opacity: 1; }
+      }
+      @keyframes reelProgress {
+        0% { transform: translateX(-90%); }
+        50% { transform: translateX(170%); }
+        100% { transform: translateX(-90%); }
+      }
       ul { margin: 0; padding-left: 20px; }
       li + li { margin-top: 8px; }
       footer { padding: 36px 0 12px; }
       @media (max-width: 880px) {
-        .hero, .grid, .stats-rail, .sequence { grid-template-columns: 1fr; }
+        .hero, .grid, .stats-rail, .sequence, .demo-reel { grid-template-columns: 1fr; }
         .navlinks { display: none; }
         .signal-grid { grid-template-columns: 1fr; }
       }
@@ -523,6 +670,51 @@
           <span>/warn</span>
           <span>/ai-style</span>
           <span>/redeem</span>
+        </div>
+      </section>
+
+      <section class="section" id="demo">
+        <div class="section-title">
+          <h2>Demo Reel</h2>
+          <p class="lead">A cinematic preview of how IceyyBot feels in a real server: free trial first, premium when the community is ready.</p>
+        </div>
+        <div class="demo-reel">
+          <div class="reel-stage" aria-label="Animated IceyyBot demo reel">
+            <div class="reel-frame">
+              <div class="reel-top"><span>ICEYYBOT_DEMO.MP4</span><span>AI + MUSIC + SERVER TOOLS</span></div>
+              <div class="reel-scene">
+                <div class="reel-bubble"><strong>Free Server</strong><p>/ask gives daily AI help so new servers can test the bot before upgrading.</p></div>
+                <div class="reel-bubble"><strong>Voice Channel</strong><p>/play starts Lavalink music with queue controls, skip, pause, resume, and now playing.</p></div>
+                <div class="reel-bubble"><strong>Premium Unlock</strong><p>/redeem activates unlimited supported usage, premium tools, and server-ready automation.</p></div>
+              </div>
+              <div class="reel-progress"><span></span></div>
+            </div>
+          </div>
+
+          <div class="compare">
+            <div class="compare-card">
+              <h3>Free <span class="tag">Trial</span></h3>
+              <p>Free servers can test the AI assistant and music commands with daily usage limits. It is perfect for checking the vibe before upgrading.</p>
+              <div class="command-cloud">
+                <span>/ask</span>
+                <span>/play</span>
+                <span>/queue</span>
+                <span>/premium</span>
+              </div>
+            </div>
+            <div class="compare-card premium">
+              <h3>Premium <span class="tag">Unlocked</span></h3>
+              <p>Premium turns IceyyBot into the full server toolkit: unlimited supported AI and music usage, moderation, tickets, reaction roles, backups, insights, polls, and giveaways.</p>
+              <div class="command-cloud">
+                <span>/warn</span>
+                <span>/ticket</span>
+                <span>/backup</span>
+                <span>/insights</span>
+                <span>/poll</span>
+                <span>/giveaway</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
