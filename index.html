@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="IceyyBot is a Discord bot with AI chat, music playback, server tools, and premium support."
+      content="IceyyBot is a Discord bot with AI chat, music playback, server tools, premium keys, and premium support for Discord communities."
     />
     <style>
       * {
@@ -55,7 +55,7 @@
       }
 
       .lead {
-        max-width: 680px;
+        max-width: 720px;
         margin: 0;
         color: #c7d7e8;
         font-size: 20px;
@@ -93,12 +93,20 @@
         gap: 16px;
       }
 
-      .card {
-        min-height: 150px;
+      .card,
+      .panel {
         padding: 22px;
         border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 8px;
         background: rgba(6, 14, 28, 0.72);
+      }
+
+      .card {
+        min-height: 150px;
+      }
+
+      .panel {
+        margin-top: 16px;
       }
 
       h2 {
@@ -107,17 +115,34 @@
       }
 
       .card p,
+      .panel p,
+      .panel li,
       footer p {
-        margin: 0;
         color: #bfd0df;
         line-height: 1.55;
+      }
+
+      .card p,
+      .panel p,
+      footer p {
+        margin: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .section {
+        margin-top: 28px;
       }
 
       footer {
         padding: 32px 0 12px;
       }
 
-      footer a {
+      footer a,
+      .panel a {
         color: #38e8ff;
       }
     </style>
@@ -128,17 +153,18 @@
         <div class="badge">Discord AI + Music Bot</div>
         <h1>IceyyBot</h1>
         <p class="lead">
-          A clean, fast Discord bot for AI chat, music playback, server tools,
-          and premium support for communities that want their server to feel alive.
+          IceyyBot is a Discord bot for AI chat, music playback, server tools,
+          premium keys, and support for Discord communities. Premium gives server
+          owners access to upgraded bot features and support for their Discord server.
         </p>
         <div class="actions">
-          <a class="button" href="mailto:eexner09@gmail.com">Contact Support</a>
-          <a class="button secondary" href="http://192.168.1.114:3000/">Open Dashboard</a>
           <a class="button" href="https://buy.stripe.com/aFa4gtehU9Rm83A3j93sI00">Buy Premium</a>
+          <a class="button secondary" href="mailto:eexner09@gmail.com">Contact Support</a>
+          <a class="button secondary" href="#premium">View Details</a>
         </div>
       </section>
 
-      <section class="grid" id="premium">
+      <section class="grid section" id="premium">
         <div class="card">
           <h2>AI Assistant</h2>
           <p>Ask questions, get quick help, and bring smart responses into your Discord server.</p>
@@ -151,6 +177,37 @@
           <h2>Premium</h2>
           <p>IceyyBot Premium is $7.99 per month and includes premium bot features and support.</p>
         </div>
+      </section>
+
+      <section class="panel section">
+        <h2>How Premium Works</h2>
+        <ul>
+          <li>Purchase IceyyBot Premium using the Buy Premium button.</li>
+          <li>After purchase, you receive a premium key by email or Discord DM when available.</li>
+          <li>Invite IceyyBot to your Discord server.</li>
+          <li>Redeem the key in your server using the <strong>/redeem</strong> command.</li>
+          <li>Premium is activated for the Discord server where the key is redeemed.</li>
+        </ul>
+      </section>
+
+      <section class="panel section">
+        <h2>Product And Service Details</h2>
+        <p>
+          IceyyBot Premium is a digital subscription for Discord server owners.
+          It provides premium bot access, music and AI-related bot features, and
+          support for setup and server use. Premium access is delivered digitally
+          through a redeemable key.
+        </p>
+      </section>
+
+      <section class="panel section">
+        <h2>Support And Refunds</h2>
+        <p>
+          For setup help, premium key issues, or refund questions, contact
+          <a href="mailto:eexner09@gmail.com">eexner09@gmail.com</a>.
+          Refund requests are reviewed case by case for duplicate purchases,
+          failed activation, or accidental purchases.
+        </p>
       </section>
 
       <footer>
