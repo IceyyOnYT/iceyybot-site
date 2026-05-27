@@ -40,6 +40,7 @@
           linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
         background-size: 44px 44px;
         mask-image: linear-gradient(to bottom, black, transparent 78%);
+        animation: gridDrift 18s linear infinite;
       }
       body::after {
         content: "";
@@ -47,10 +48,37 @@
         inset: 0;
         pointer-events: none;
         background:
-          linear-gradient(transparent 0 94%, rgba(56, 232, 255, 0.08) 95% 100%);
-        background-size: 100% 9px;
-        opacity: 0.45;
+          linear-gradient(115deg, transparent 0%, rgba(56, 232, 255, 0.1) 44%, transparent 58%),
+          repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.026) 0 1px, transparent 1px 6px);
+        opacity: 0.46;
         mix-blend-mode: screen;
+        animation: scanSweep 10s ease-in-out infinite;
+      }
+      @keyframes gridDrift {
+        from { background-position: 0 0, 0 0; }
+        to { background-position: 44px 44px, 44px 44px; }
+      }
+      @keyframes scanSweep {
+        0%, 100% { transform: translateX(-18%); opacity: 0.24; }
+        50% { transform: translateX(18%); opacity: 0.5; }
+      }
+      @keyframes panelSweep {
+        0%, 72% { transform: translateX(-120%); opacity: 0; }
+        82% { opacity: 1; }
+        100% { transform: translateX(120%); opacity: 0; }
+      }
+      @keyframes floatFrame {
+        0%, 100% { transform: translateY(0) rotate(18deg); }
+        50% { transform: translateY(12px) rotate(22deg); }
+      }
+      @keyframes pulseTrack {
+        0% { transform: translateX(-75%); }
+        50% { transform: translateX(55%); }
+        100% { transform: translateX(-75%); }
+      }
+      @keyframes badgePulse {
+        0%, 100% { box-shadow: 0 0 0 rgba(56, 232, 255, 0); }
+        50% { box-shadow: 0 0 26px rgba(56, 232, 255, 0.16); }
       }
       main {
         position: relative;
@@ -107,6 +135,7 @@
         border: 1px solid rgba(56, 232, 255, 0.16);
         transform: rotate(18deg);
         pointer-events: none;
+        animation: floatFrame 7s ease-in-out infinite;
       }
       .badge, .chip {
         width: fit-content;
@@ -117,6 +146,7 @@
         background: rgba(7, 17, 31, 0.72);
         font-size: 14px;
         font-weight: 800;
+        animation: badgePulse 3.6s ease-in-out infinite;
       }
       h1 {
         margin: 18px 0 0;
@@ -144,6 +174,12 @@
         border: 1px solid rgba(56, 232, 255, 0.16);
         border-radius: 8px;
         background: rgba(56, 232, 255, 0.08);
+        transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      }
+      .signal:hover {
+        transform: translateY(-2px);
+        border-color: rgba(56, 232, 255, 0.34);
+        background: rgba(56, 232, 255, 0.12);
       }
       .signal span {
         display: block;
@@ -169,6 +205,12 @@
         text-align: center;
         white-space: nowrap;
         box-shadow: 0 16px 44px rgba(56, 232, 255, 0.18);
+        transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+      }
+      .button:hover {
+        transform: translateY(-2px);
+        background: #7df1ff;
+        box-shadow: 0 18px 54px rgba(56, 232, 255, 0.26);
       }
       .button span { color: inherit; }
       .secondary {
@@ -178,11 +220,32 @@
         box-shadow: none;
       }
       .console, .card, .panel {
+        position: relative;
+        overflow: hidden;
         border: 1px solid var(--line);
         border-radius: 8px;
         background: var(--panel);
         backdrop-filter: blur(16px);
         box-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      }
+      .console::after,
+      .card::after,
+      .panel::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(115deg, transparent 0%, rgba(56, 232, 255, 0.13) 44%, transparent 58%);
+        transform: translateX(-120%);
+        animation: panelSweep 8s ease-in-out infinite;
+      }
+      .console:hover,
+      .card:hover,
+      .panel:hover {
+        transform: translateY(-3px);
+        border-color: rgba(56, 232, 255, 0.36);
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.4), 0 0 34px rgba(56, 232, 255, 0.08);
       }
       .console { overflow: hidden; }
       .console-top {
@@ -197,6 +260,7 @@
         height: 10px;
         border-radius: 99px;
         background: var(--cyan);
+        box-shadow: 0 0 18px rgba(56, 232, 255, 0.38);
       }
       .dots span:nth-child(2) { background: var(--purple); }
       .dots span:nth-child(3) { background: var(--green); }
@@ -214,12 +278,19 @@
         border-radius: inherit;
         background: linear-gradient(90deg, var(--cyan), var(--green), var(--purple));
         box-shadow: 0 0 20px rgba(56, 232, 255, 0.35);
+        animation: pulseTrack 4.5s ease-in-out infinite;
       }
       .message {
         padding: 14px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 8px;
         background: rgba(255, 255, 255, 0.055);
+        transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      }
+      .message:hover {
+        transform: translateX(3px);
+        border-color: rgba(56, 232, 255, 0.28);
+        background: rgba(56, 232, 255, 0.075);
       }
       .message strong { display: block; margin-bottom: 6px; }
       .message p, .card p, .panel p, .panel li, footer p {
@@ -240,6 +311,12 @@
         border-radius: 8px;
         background: linear-gradient(180deg, rgba(8, 17, 34, 0.86), rgba(8, 17, 34, 0.62));
         backdrop-filter: blur(16px);
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      }
+      .rail-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(60, 255, 180, 0.32);
+        box-shadow: 0 20px 60px rgba(60, 255, 180, 0.06);
       }
       .rail-card span {
         display: block;
@@ -288,6 +365,12 @@
         background: rgba(56, 232, 255, 0.08);
         font-size: 13px;
         font-weight: 800;
+        transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+      }
+      .command-cloud span:hover {
+        transform: translateY(-2px);
+        border-color: rgba(56, 232, 255, 0.36);
+        background: rgba(56, 232, 255, 0.13);
       }
       .sequence {
         counter-reset: step;
@@ -303,6 +386,22 @@
         border-radius: 8px;
         background: var(--panel);
         backdrop-filter: blur(16px);
+        overflow: hidden;
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      }
+      .step::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(115deg, transparent 0%, rgba(167, 139, 250, 0.14) 42%, transparent 58%);
+        transform: translateX(-120%);
+        animation: panelSweep 9s ease-in-out infinite;
+      }
+      .step:hover {
+        transform: translateY(-3px);
+        border-color: rgba(167, 139, 250, 0.38);
+        box-shadow: 0 24px 70px rgba(167, 139, 250, 0.08);
       }
       .step::before {
         counter-increment: step;
@@ -336,6 +435,15 @@
         .hero, .grid, .stats-rail, .sequence { grid-template-columns: 1fr; }
         .navlinks { display: none; }
         .signal-grid { grid-template-columns: 1fr; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 1ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 1ms !important;
+        }
       }
     </style>
   </head>
