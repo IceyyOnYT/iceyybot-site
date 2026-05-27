@@ -1,3 +1,5 @@
+Absolutely. Paste this over your current `index.html`. It keeps your Stripe, dashboard, and support links, but makes the site feel much more polished.
+
 ```html
 <!doctype html>
 <html lang="en">
@@ -9,124 +11,313 @@
       content="IceyyBot is a Discord bot with AI chat, music playback, server tools, premium keys, and premium support for Discord communities."
     />
     <style>
-      * {
-        box-sizing: border-box;
+      * { box-sizing: border-box; }
+
+      :root {
+        --bg: #060b14;
+        --panel: rgba(8, 17, 34, 0.76);
+        --panel-strong: rgba(10, 22, 44, 0.92);
+        --line: rgba(255, 255, 255, 0.12);
+        --text: #f8fbff;
+        --muted: #b9c8d8;
+        --cyan: #38e8ff;
+        --green: #3cffb4;
+        --purple: #a78bfa;
       }
 
       body {
         margin: 0;
         min-height: 100vh;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #f7fbff;
+        font-family: Inter, ui-sans-serif, system-ui, Arial, Helvetica, sans-serif;
+        color: var(--text);
         background:
-          radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.28), transparent 28%),
-          radial-gradient(circle at 80% 10%, rgba(145, 92, 255, 0.26), transparent 28%),
-          linear-gradient(135deg, #07111f 0%, #12182c 48%, #07131f 100%);
+          linear-gradient(rgba(6, 11, 20, 0.76), rgba(6, 11, 20, 0.9)),
+          url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1800&q=80")
+          center / cover fixed;
       }
 
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: linear-gradient(to bottom, black, transparent 78%);
+      }
+
+      a { color: inherit; }
+
       main {
-        width: min(1040px, calc(100% - 32px));
+        position: relative;
+        width: min(1120px, calc(100% - 32px));
         margin: 0 auto;
-        padding: 72px 0 40px;
+        padding: 28px 0 44px;
+      }
+
+      nav {
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 900;
+        letter-spacing: 0.02em;
+      }
+
+      .logo {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        color: #06121f;
+        background: linear-gradient(135deg, var(--cyan), var(--green));
+        box-shadow: 0 0 32px rgba(56, 232, 255, 0.32);
+        font-weight: 950;
+      }
+
+      .navlinks {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .navlinks a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 14px;
       }
 
       .hero {
-        min-height: 72vh;
+        min-height: calc(100vh - 92px);
         display: grid;
-        align-content: center;
-        gap: 28px;
+        grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.96fr);
+        align-items: center;
+        gap: 42px;
+        padding: 48px 0 64px;
       }
 
       .badge {
         width: fit-content;
         padding: 8px 12px;
-        border: 1px solid rgba(0, 212, 255, 0.35);
+        border: 1px solid rgba(56, 232, 255, 0.35);
         border-radius: 999px;
-        color: #9eeeff;
+        color: #b9f7ff;
         background: rgba(7, 17, 31, 0.72);
         font-size: 14px;
-        font-weight: 700;
+        font-weight: 800;
       }
 
       h1 {
-        margin: 0;
-        max-width: 780px;
-        font-size: clamp(48px, 9vw, 104px);
-        line-height: 0.92;
+        margin: 18px 0 0;
+        max-width: 760px;
+        font-size: clamp(54px, 9vw, 112px);
+        line-height: 0.9;
+        letter-spacing: 0;
       }
 
       .lead {
         max-width: 720px;
-        margin: 0;
-        color: #c7d7e8;
+        margin: 24px 0 0;
+        color: #d5e2ef;
         font-size: 20px;
-        line-height: 1.6;
+        line-height: 1.65;
       }
 
       .actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
+        margin-top: 30px;
       }
 
-      a.button {
+      .button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 48px;
-        padding: 0 18px;
+        min-height: 50px;
+        padding: 0 19px;
         border-radius: 8px;
         color: #06121f;
-        background: #38e8ff;
-        font-weight: 800;
+        background: var(--cyan);
+        font-weight: 900;
         text-decoration: none;
+        box-shadow: 0 16px 44px rgba(56, 232, 255, 0.18);
       }
 
-      a.secondary {
-        color: #f7fbff;
+      .secondary {
+        color: var(--text);
         background: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: none;
+      }
+
+      .console {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(5, 11, 22, 0.82);
+        box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42);
+        overflow: hidden;
+      }
+
+      .console-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .dots {
+        display: flex;
+        gap: 7px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 99px;
+        background: var(--cyan);
+      }
+
+      .dot:nth-child(2) { background: var(--purple); }
+      .dot:nth-child(3) { background: var(--green); }
+
+      .console-body {
+        padding: 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .message {
+        padding: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.055);
+      }
+
+      .message strong {
+        display: block;
+        margin-bottom: 6px;
+        color: #ffffff;
+      }
+
+      .message p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .status-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 4px;
+      }
+
+      .stat {
+        padding: 12px;
+        border-radius: 8px;
+        background: rgba(56, 232, 255, 0.1);
+        border: 1px solid rgba(56, 232, 255, 0.16);
+      }
+
+      .stat span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .stat b {
+        display: block;
+        margin-top: 4px;
+        font-size: 18px;
+      }
+
+      .section {
+        margin-top: 30px;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(28px, 4vw, 42px);
+        line-height: 1;
+      }
+
+      .section-title p {
+        max-width: 520px;
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
       }
 
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 16px;
       }
 
       .card,
       .panel {
-        padding: 22px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        border: 1px solid var(--line);
         border-radius: 8px;
-        background: rgba(6, 14, 28, 0.72);
+        background: var(--panel);
+        backdrop-filter: blur(16px);
       }
 
       .card {
-        min-height: 150px;
+        min-height: 172px;
+        padding: 22px;
       }
 
-      .panel {
-        margin-top: 16px;
-      }
-
-      h2 {
+      .card h3,
+      .panel h3 {
         margin: 0 0 10px;
-        font-size: 22px;
+        font-size: 21px;
       }
 
       .card p,
       .panel p,
       .panel li,
       footer p {
-        color: #bfd0df;
-        line-height: 1.55;
+        color: var(--muted);
+        line-height: 1.58;
       }
 
       .card p,
       .panel p,
       footer p {
         margin: 0;
+      }
+
+      .panel {
+        margin-top: 16px;
+        padding: 24px;
+      }
+
+      .panel-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
       }
 
       ul {
@@ -134,100 +325,189 @@
         padding-left: 20px;
       }
 
-      .section {
-        margin-top: 28px;
+      li + li {
+        margin-top: 8px;
+      }
+
+      .price {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .price b {
+        font-size: 42px;
       }
 
       footer {
-        padding: 32px 0 12px;
+        padding: 36px 0 12px;
       }
 
       footer a,
       .panel a {
-        color: #38e8ff;
+        color: var(--cyan);
+      }
+
+      @media (max-width: 880px) {
+        .hero,
+        .panel-grid,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+          padding-top: 36px;
+        }
+
+        .navlinks {
+          display: none;
+        }
+
+        .status-row {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
   <body>
     <main>
+      <nav>
+        <div class="brand">
+          <div class="logo">I</div>
+          <span>IceyyBot</span>
+        </div>
+        <div class="navlinks">
+          <a href="#features">Features</a>
+          <a href="#premium">Premium</a>
+          <a href="#support">Support</a>
+        </div>
+      </nav>
+
       <section class="hero">
-        <div class="badge">Discord AI + Music Bot</div>
-        <h1>IceyyBot</h1>
-        <p class="lead">
-          IceyyBot is a Discord bot for AI chat, music playback, server tools,
-          premium keys, and support for Discord communities. Premium gives server
-          owners access to upgraded bot features and support for their Discord server.
-        </p>
-        <div class="actions">
-          <a class="button" href="https://buy.stripe.com/fZu7sFflYfbG6Zw4nd3sI02">Buy Premium</a>
-          <a class="button secondary" href="https://bot.exnerlabs.com/" target="_blank" rel="noopener">Open Dashboard</a>
-          <a
-            class="button secondary"
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=eexner09@gmail.com&su=IceyyBot%20Support"
-            target="_blank"
-            rel="noopener"
-          >
-            Contact Support
-          </a>
-          <a class="button secondary" href="#premium">View Details</a>
+        <div>
+          <div class="badge">Discord AI + Lavalink Music</div>
+          <h1>IceyyBot</h1>
+          <p class="lead">
+            A clean, fast Discord bot for AI chat, music playback, server tools,
+            premium keys, and support. Free servers can try daily usage, while
+            premium servers unlock unlimited supported usage.
+          </p>
+          <div class="actions">
+            <a class="button" href="https://buy.stripe.com/fZu7sFflYfbG6Zw4nd3sI02">Buy Premium</a>
+            <a class="button secondary" href="https://bot.exnerlabs.com/" target="_blank" rel="noopener">Open Dashboard</a>
+            <a
+              class="button secondary"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=eexner09@gmail.com&su=IceyyBot%20Support"
+              target="_blank"
+              rel="noopener"
+            >
+              Contact Support
+            </a>
+          </div>
+        </div>
+
+        <aside class="console" aria-label="IceyyBot preview">
+          <div class="console-top">
+            <div class="dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <span>IceyyBot Live</span>
+          </div>
+          <div class="console-body">
+            <div class="message">
+              <strong>/ask</strong>
+              <p>AI assistant answers questions directly inside your server.</p>
+            </div>
+            <div class="message">
+              <strong>/play</strong>
+              <p>Lavalink-powered music playback with queue, skip, pause, resume, and now playing.</p>
+            </div>
+            <div class="message">
+              <strong>/redeem</strong>
+              <p>Premium keys activate unlimited supported usage for the server where they are redeemed.</p>
+            </div>
+            <div class="status-row">
+              <div class="stat"><span>AI</span><b>Ready</b></div>
+              <div class="stat"><span>Music</span><b>Online</b></div>
+              <div class="stat"><span>Premium</span><b>Keys</b></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="features">
+        <div class="section-title">
+          <h2>Built For Servers</h2>
+          <p>Everything is handled through simple slash commands, with free usage limits and premium unlocks built in.</p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h3>AI Assistant</h3>
+            <p>Ask questions, get quick help, and bring smart responses into your Discord server.</p>
+          </div>
+          <div class="card">
+            <h3>Music Playback</h3>
+            <p>Play music in voice channels using Lavalink-powered playback and simple queue controls.</p>
+          </div>
+          <div class="card">
+            <h3>Premium Keys</h3>
+            <p>Purchases generate redeemable keys that activate premium in the server of your choice.</p>
+          </div>
         </div>
       </section>
 
-      <section class="grid section" id="premium">
-        <div class="card">
-          <h2>AI Assistant</h2>
-          <p>Ask questions, get quick help, and bring smart responses into your Discord server.</p>
+      <section class="section panel-grid" id="premium">
+        <div class="panel">
+          <h3>Premium</h3>
+          <p>
+            IceyyBot Premium is a digital subscription for Discord server owners.
+            It provides premium bot access, music and AI-related bot features,
+            and support for setup and server use.
+          </p>
+          <div class="price">
+            <b>$7.99</b>
+            <span>/ month</span>
+          </div>
+          <div class="actions">
+            <a class="button" href="https://buy.stripe.com/fZu7sFflYfbG6Zw4nd3sI02">Buy Premium</a>
+          </div>
         </div>
-        <div class="card">
-          <h2>Music Playback</h2>
-          <p>Play music in voice channels using Lavalink-powered playback and simple slash commands.</p>
-        </div>
-        <div class="card">
-          <h2>Premium</h2>
-          <p>IceyyBot Premium is $7.99 per month and includes premium bot features and support.</p>
+
+        <div class="panel">
+          <h3>How Premium Works</h3>
+          <ul>
+            <li>Purchase IceyyBot Premium using the Buy Premium button.</li>
+            <li>Receive a premium key by email or Discord DM when available.</li>
+            <li>Invite IceyyBot to your Discord server.</li>
+            <li>Redeem the key using the <strong>/redeem</strong> command.</li>
+            <li>Premium activates for the server where the key is redeemed.</li>
+          </ul>
         </div>
       </section>
 
       <section class="panel section">
-        <h2>How Premium Works</h2>
-        <ul>
-          <li>Purchase IceyyBot Premium using the Buy Premium button.</li>
-          <li>After purchase, you receive a premium key by email or Discord DM when available.</li>
-          <li>Invite IceyyBot to your Discord server.</li>
-          <li>Redeem the key in your server using the <strong>/redeem</strong> command.</li>
-          <li>Premium is activated for the Discord server where the key is redeemed.</li>
-        </ul>
-      </section>
-
-      <section class="panel section">
-        <h2>Dashboard</h2>
+        <h3>Dashboard</h3>
         <p>
           IceyyBot includes a dashboard for bot status, premium tools, and server management.
-          You can open it at
+          Open it at
           <a href="https://bot.exnerlabs.com/" target="_blank" rel="noopener">https://bot.exnerlabs.com/</a>.
         </p>
       </section>
 
-      <section class="panel section">
-        <h2>Product And Service Details</h2>
-        <p>
-          IceyyBot Premium is a digital subscription for Discord server owners.
-          It provides premium bot access, music and AI-related bot features, and
-          support for setup and server use. Premium access is delivered digitally
-          through a redeemable key.
-        </p>
-      </section>
-
-      <section class="panel section">
-        <h2>Support And Refunds</h2>
+      <section class="panel section" id="support">
+        <h3>Support And Refunds</h3>
         <p>
           For setup help, premium key issues, or refund questions, contact
           <a
             href="https://mail.google.com/mail/?view=cm&fs=1&to=eexner09@gmail.com&su=IceyyBot%20Support"
             target="_blank"
             rel="noopener"
-          >
-            eexner09@gmail.com</a>.
+          >eexner09@gmail.com</a>.
           Refund requests are reviewed case by case for duplicate purchases,
           failed activation, or accidental purchases.
         </p>
