@@ -137,25 +137,42 @@
         margin-top: 30px;
       }
 
-      .button {
+      .button,
+      a.button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         min-height: 50px;
-        padding: 0 19px;
+        min-width: 132px;
+        padding: 0 20px;
         border-radius: 8px;
-        color: #06121f;
-        background: var(--cyan);
+        color: #06121f !important;
+        background: #38e8ff;
         font-weight: 900;
         text-decoration: none;
+        text-align: center;
+        white-space: nowrap;
         box-shadow: 0 16px 44px rgba(56, 232, 255, 0.18);
       }
 
-      .secondary {
-        color: var(--text);
+      .button:hover {
+        background: #7df1ff;
+      }
+
+      .buy-button {
+        min-width: 150px;
+      }
+
+      .secondary,
+      a.secondary {
+        color: #f8fbff !important;
         background: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.18);
         box-shadow: none;
+      }
+
+      .secondary:hover {
+        background: rgba(255, 255, 255, 0.16);
       }
 
       .console {
@@ -392,7 +409,7 @@
             premium servers unlock unlimited supported usage.
           </p>
           <div class="actions">
-            <a class="button" href="https://buy.stripe.com/fZu7sFflYfbG6Zw4nd3sI02">Buy Premium</a>
+            <a class="button buy-button" href="https://buy.stripe.com/fZu7sFflYfbG6Zw4nd3sI02">Buy Premium</a>
             <a class="button secondary" href="https://bot.exnerlabs.com/" target="_blank" rel="noopener">Open Dashboard</a>
             <a
               class="button secondary"
@@ -471,7 +488,7 @@
             <span>/ month</span>
           </div>
           <div class="actions">
-            <a class="button" href="https://buy.stripe.com/fZu7sFflYfbG6Zw4nd3sI02">Buy Premium</a>
+            <a class="button buy-button" href="https://buy.stripe.com/fZu7sFflYfbG6Zw4nd3sI02">Buy Premium</a>
           </div>
         </div>
 
