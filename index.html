@@ -93,6 +93,20 @@
           radial-gradient(circle at 48% 80%, rgba(60, 255, 180, 0.12), transparent 22%);
         animation: fogMove 20s ease-in-out infinite alternate;
       }
+      .cursor-glow {
+        position: fixed;
+        left: var(--mouse-x, 50vw);
+        top: var(--mouse-y, 50vh);
+        width: 480px;
+        height: 480px;
+        pointer-events: none;
+        z-index: 0;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(56, 232, 255, 0.14), rgba(167, 139, 250, 0.06) 34%, transparent 66%);
+        transform: translate(-50%, -50%);
+        transition: left 90ms linear, top 90ms linear;
+        mix-blend-mode: screen;
+      }
       .particles {
         position: fixed;
         inset: 0;
@@ -266,7 +280,8 @@
           radial-gradient(circle at 12% 0%, rgba(56, 232, 255, 0.1), transparent 34%);
         backdrop-filter: blur(16px);
         box-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
-        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+        transform-style: preserve-3d;
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
       }
       .hero-visual::after,
       .panel::after,
@@ -289,9 +304,26 @@
       .feature-card:hover,
       .premium-card:hover,
       .use-card:hover {
-        transform: translateY(-4px);
+        transform: translateY(-7px) scale(1.012);
         border-color: rgba(56, 232, 255, 0.38);
         box-shadow: 0 32px 92px rgba(0, 0, 0, 0.43), 0 0 34px rgba(56, 232, 255, 0.09);
+      }
+      .feature-detail {
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transition: grid-template-rows 180ms ease, opacity 180ms ease, margin-top 180ms ease;
+      }
+      .feature-detail span {
+        overflow: hidden;
+        color: #dff8ff;
+        line-height: 1.5;
+      }
+      .feature-card:hover .feature-detail,
+      .premium-card:hover .feature-detail {
+        grid-template-rows: 1fr;
+        opacity: 1;
+        margin-top: 12px;
       }
       .hero-visual {
         min-height: 620px;
@@ -533,6 +565,39 @@
       .premium-card {
         min-height: 260px;
       }
+      .tier-compare {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 16px;
+        margin-top: 16px;
+      }
+      .tier-panel {
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(8, 17, 34, 0.72);
+        backdrop-filter: blur(16px);
+      }
+      .tier-panel.premium-tier {
+        border-color: rgba(60, 255, 180, 0.42);
+        background:
+          radial-gradient(circle at 85% 0%, rgba(167, 139, 250, 0.18), transparent 34%),
+          rgba(8, 17, 34, 0.82);
+      }
+      .unlock-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .unlock {
+        padding: 12px;
+        border: 1px solid rgba(56, 232, 255, 0.16);
+        border-radius: 8px;
+        color: #dff8ff;
+        background: rgba(56, 232, 255, 0.07);
+        font-weight: 850;
+      }
       .popular {
         border-color: rgba(60, 255, 180, 0.42);
         box-shadow: 0 0 34px rgba(60, 255, 180, 0.1);
@@ -596,6 +661,8 @@
         .mockup-grid,
         .use-grid,
         .premium-grid,
+        .tier-compare,
+        .unlock-grid,
         .architecture,
         .vision {
           grid-template-columns: 1fr;
@@ -634,6 +701,7 @@
   </head>
   <body>
     <div class="fog" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
     <div class="particles" aria-hidden="true">
       <span></span><span></span><span></span><span></span>
       <span></span><span></span><span></span><span></span>
@@ -747,12 +815,12 @@
           <p>Product blocks instead of raw stats. Clear, scannable, and focused on what community owners actually want.</p>
         </div>
         <div class="feature-grid">
-          <article class="feature-card"><div class="feature-icon">AI</div><h3>AI Assistant</h3><p>Answer questions, generate setup recommendations, tune AI style, and help members from inside Discord.</p></article>
-          <article class="feature-card"><div class="feature-icon">MOD</div><h3>Moderation</h3><p>Warnings, clear, kick, ban, timeouts, cases, security alerts, and server-ready safety workflows.</p></article>
-          <article class="feature-card"><div class="feature-icon">MUS</div><h3>Music System</h3><p>Lavalink-powered music with queue controls, now playing, playlist support, and premium usage gates.</p></article>
-          <article class="feature-card"><div class="feature-icon">ANA</div><h3>Analytics</h3><p>Command trends, AI usage, activity signals, moderation pressure, and server intelligence scans.</p></article>
-          <article class="feature-card"><div class="feature-icon">AUT</div><h3>Automation</h3><p>Welcome systems, autoroles, tickets, reaction roles, suggestions, polls, giveaways, and backups.</p></article>
-          <article class="feature-card"><div class="feature-icon">PRO</div><h3>Premium Tools</h3><p>Redeemable keys, unlimited supported usage, custom AI personalities, and owner-control workflows.</p></article>
+          <article class="feature-card"><div class="feature-icon">AI</div><h3>AI Assistant</h3><p>Answer questions, generate setup recommendations, tune AI style, and help members from inside Discord.</p><div class="feature-detail"><span>Premium expands the assistant into a server operations layer with custom personality and smarter guidance.</span></div></article>
+          <article class="feature-card"><div class="feature-icon">MOD</div><h3>Moderation</h3><p>Warnings, clear, kick, ban, timeouts, cases, security alerts, and server-ready safety workflows.</p><div class="feature-detail"><span>Use cases, logs, warnings, and scans to keep busy servers organized without digging through chat.</span></div></article>
+          <article class="feature-card"><div class="feature-icon">MUS</div><h3>Music System</h3><p>Lavalink-powered music with queue controls, now playing, playlist support, and premium usage gates.</p><div class="feature-detail"><span>Free servers can try music daily. Premium turns it into the always-on server soundtrack.</span></div></article>
+          <article class="feature-card"><div class="feature-icon">ANA</div><h3>Analytics</h3><p>Command trends, AI usage, activity signals, moderation pressure, and server intelligence scans.</p><div class="feature-detail"><span>See which systems are being used and where your server needs better setup.</span></div></article>
+          <article class="feature-card"><div class="feature-icon">AUT</div><h3>Automation</h3><p>Welcome systems, autoroles, tickets, reaction roles, suggestions, polls, giveaways, and backups.</p><div class="feature-detail"><span>Turn repeated server chores into clean slash-command workflows.</span></div></article>
+          <article class="feature-card"><div class="feature-icon">PRO</div><h3>Premium Tools</h3><p>Redeemable keys, unlimited supported usage, custom AI personalities, and owner-control workflows.</p><div class="feature-detail"><span>Built for server owners who want IceyyBot to feel like infrastructure, not a toy.</span></div></article>
         </div>
       </section>
 
@@ -850,6 +918,32 @@
             </ul>
           </article>
         </div>
+        <div class="tier-compare">
+          <article class="tier-panel">
+            <div class="badge">Free Tier</div>
+            <h3>Start Clean</h3>
+            <p>Free servers get a real taste of IceyyBot before upgrading.</p>
+            <div class="unlock-grid">
+              <div class="unlock">Core moderation</div>
+              <div class="unlock">Basic music</div>
+              <div class="unlock">Standard AI</div>
+              <div class="unlock">Community analytics</div>
+            </div>
+          </article>
+          <article class="tier-panel premium-tier">
+            <div class="badge">Premium Unlock</div>
+            <h3>Full Control Mode</h3>
+            <p>Premium makes the bot feel like a full server operating system.</p>
+            <div class="unlock-grid">
+              <div class="unlock">AI Memory</div>
+              <div class="unlock">Advanced analytics</div>
+              <div class="unlock">Smart moderation</div>
+              <div class="unlock">Unlimited music</div>
+              <div class="unlock">Custom AI personalities</div>
+              <div class="unlock">Priority processing</div>
+            </div>
+          </article>
+        </div>
       </section>
 
       <footer>
@@ -865,6 +959,10 @@
     </main>
 
     <script>
+      window.addEventListener("pointermove", (event) => {
+        document.documentElement.style.setProperty("--mouse-x", event.clientX + "px");
+        document.documentElement.style.setProperty("--mouse-y", event.clientY + "px");
+      });
       setInterval(() => {
         const img = new Image();
         img.src = "https://bot.exnerlabs.com/api/visit.gif?site=exnerlabs.com&path=/&heartbeat=1&t=" + Date.now();
