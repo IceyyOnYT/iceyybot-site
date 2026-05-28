@@ -768,12 +768,19 @@
         <p>IceyyBot by Exner Labs. Contact: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=eexner09@gmail.com&su=IceyyBot%20Support" target="_blank" rel="noopener">eexner09@gmail.com</a></p>
       </footer>
     </main>
-    <img
-      src="https://bot.exnerlabs.com/api/visit.gif?site=exnerlabs.com&path=/"
-      alt=""
-      width="1"
-      height="1"
-      style="position:absolute;left:-9999px;opacity:0;pointer-events:none;"
-    />
+    <script>
+      function pingIceyyBotVisit(heartbeat) {
+        var img = new Image();
+        img.src =
+          "https://bot.exnerlabs.com/api/visit.gif?site=exnerlabs.com&path=/" +
+          (heartbeat ? "&heartbeat=1" : "") +
+          "&t=" +
+          Date.now();
+      }
+      pingIceyyBotVisit(false);
+      setInterval(function () {
+        pingIceyyBotVisit(true);
+      }, 30000);
+    </script>
   </body>
 </html>
