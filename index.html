@@ -543,6 +543,95 @@
         color: var(--green);
         font-size: 12px;
       }
+      .update-drop {
+        position: relative;
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        gap: 16px;
+        align-items: stretch;
+      }
+      .update-hero {
+        min-height: 100%;
+        background:
+          radial-gradient(circle at 18% 18%, rgba(255, 93, 143, 0.18), transparent 28%),
+          radial-gradient(circle at 88% 12%, rgba(56, 232, 255, 0.16), transparent 30%),
+          linear-gradient(180deg, rgba(8, 17, 34, 0.9), rgba(8, 17, 34, 0.62));
+      }
+      .update-hero h2 { margin-top: 18px; }
+      .update-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .update-metric {
+        padding: 12px;
+        border: 1px solid rgba(56, 232, 255, 0.16);
+        border-radius: 8px;
+        background: rgba(56, 232, 255, 0.07);
+      }
+      .update-metric span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .update-metric b {
+        display: block;
+        margin-top: 6px;
+        font-size: 26px;
+      }
+      .game-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .game-card {
+        position: relative;
+        min-height: 170px;
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.066), rgba(255, 255, 255, 0.032)),
+          radial-gradient(circle at 80% 0%, rgba(56, 232, 255, 0.12), transparent 36%);
+        overflow: hidden;
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      }
+      .game-card::before {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        background: conic-gradient(from 0deg, transparent, rgba(56, 232, 255, 0.18), transparent, rgba(255, 93, 143, 0.14), transparent);
+        animation: gameSpin 12s linear infinite;
+        opacity: 0.52;
+      }
+      .game-card > * { position: relative; }
+      .game-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: rgba(60, 255, 180, 0.34);
+        box-shadow: 0 24px 74px rgba(0, 0, 0, 0.38), 0 0 34px rgba(56, 232, 255, 0.1);
+      }
+      .game-icon {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 14px;
+        border-radius: 8px;
+        color: #06121f;
+        background: linear-gradient(135deg, var(--cyan), var(--green));
+        font-weight: 950;
+      }
+      .game-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      @keyframes gameSpin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
       .cta-stage {
         position: relative;
         display: grid;
@@ -740,9 +829,14 @@
         .tier-compare,
         .unlock-grid,
         .command-deck,
+        .update-drop,
         .cta-stage,
         .architecture,
         .vision {
+          grid-template-columns: 1fr;
+        }
+        .game-grid,
+        .update-metrics {
           grid-template-columns: 1fr;
         }
         .hero {
@@ -794,6 +888,7 @@
         <div class="navlinks">
           <a href="#ecosystem">Ecosystem</a>
           <a href="#features">Features</a>
+          <a href="#economy-update">New Update</a>
           <a href="#technology">Technology</a>
           <a href="#premium">Premium</a>
           <a href="#dashboard">Dashboard</a>
@@ -904,10 +999,42 @@
           </div>
           <div class="panel command-list">
             <span>/ask generate a welcome system</span>
-            <span>/play start the queue</span>
-            <span>/warn review member history</span>
-            <span>/insights scan activity</span>
+            <span>/daily claim your streak</span>
+            <span>/slots hit the machine</span>
+            <span>/fish catch rare loot</span>
+            <span>/serverevents run giveaway</span>
             <span>/redeem unlock premium</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="economy-update">
+        <div class="update-drop">
+          <article class="panel update-hero">
+            <div class="badge">New Economy Expansion</div>
+            <h2>Credits, Games, Pets, Skins, And Events</h2>
+            <p>
+              IceyyBot now has a bigger credit loop with daily, weekly, monthly,
+              lottery, slots, roulette, scratch cards, fishing, farming, pets,
+              work shifts, showcases, skins, and server event pools.
+            </p>
+            <div class="update-metrics">
+              <div class="update-metric"><span>New Systems</span><b>10+</b></div>
+              <div class="update-metric"><span>Game Loops</span><b>Casino</b></div>
+              <div class="update-metric"><span>Server Events</span><b>Live</b></div>
+            </div>
+            <div class="actions">
+              <a class="button" href="https://discord.com/oauth2/authorize?client_id=1162966703844642836&permissions=8&scope=bot%20applications.commands">Add to Discord</a>
+              <a class="button secondary" href="https://bot.exnerlabs.com/">Launch Dashboard</a>
+            </div>
+          </article>
+          <div class="game-grid">
+            <article class="game-card"><div class="game-icon">777</div><h3>Casino Layer</h3><p>/slots, /roulette, /scratch, /lottery, and blackjack give members more ways to spend and win credits.</p></article>
+            <article class="game-card"><div class="game-icon">PET</div><h3>Pets And Skins</h3><p>Members can buy pets, care for them, hire sitters, select skins, and build a showcase identity.</p></article>
+            <article class="game-card"><div class="game-icon">FISH</div><h3>Fishing And Farming</h3><p>Catch fish, sell buckets, level farms, activate boosts, and climb new game leaderboards.</p></article>
+            <article class="game-card"><div class="game-icon">JOB</div><h3>Work And Stream</h3><p>Jobs, work shifts, streamer simulator, weekly rewards, and monthly rewards keep the economy moving.</p></article>
+            <article class="game-card"><div class="game-icon">EVT</div><h3>Server Events</h3><p>Donation pools, raffles, giveaways, split-or-steal, rumble events, and friendly server bankrobs.</p></article>
+            <article class="game-card"><div class="game-icon">LB</div><h3>Leaderboards</h3><p>Rank users by stats, items, games, adventures, and complete leaderboard profiles.</p></article>
           </div>
         </div>
       </section>
@@ -923,7 +1050,7 @@
           <article class="feature-card"><div class="feature-icon">MUS</div><h3>Music System</h3><p>Lavalink-powered music with queue controls, now playing, playlist support, and premium usage gates.</p><div class="feature-detail"><span>Free servers can try music daily. Premium turns it into the always-on server soundtrack.</span></div></article>
           <article class="feature-card"><div class="feature-icon">ANA</div><h3>Analytics</h3><p>Command trends, AI usage, activity signals, moderation pressure, and server intelligence scans.</p><div class="feature-detail"><span>See which systems are being used and where your server needs better setup.</span></div></article>
           <article class="feature-card"><div class="feature-icon">AUT</div><h3>Automation</h3><p>Welcome systems, autoroles, tickets, reaction roles, suggestions, polls, giveaways, and backups.</p><div class="feature-detail"><span>Turn repeated server chores into clean slash-command workflows.</span></div></article>
-          <article class="feature-card"><div class="feature-icon">PRO</div><h3>Premium Tools</h3><p>Redeemable keys, unlimited supported usage, custom AI personalities, and owner-control workflows.</p><div class="feature-detail"><span>Built for server owners who want IceyyBot to feel like infrastructure, not a toy.</span></div></article>
+          <article class="feature-card"><div class="feature-icon">ECO</div><h3>Economy Games</h3><p>Credits, pets, skins, slots, roulette, fishing, farming, work shifts, showcases, and server events.</p><div class="feature-detail"><span>Give members a reason to come back with daily, weekly, and monthly reward loops.</span></div></article>
         </div>
       </section>
 
