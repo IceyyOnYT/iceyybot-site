@@ -131,6 +131,22 @@
       .particles span:nth-child(6) { left: 76%; bottom: -13%; animation-delay: -12s; background: rgba(60, 255, 180, 0.72); }
       .particles span:nth-child(7) { left: 88%; bottom: -11%; animation-delay: -5s; background: rgba(167, 139, 250, 0.72); }
       .particles span:nth-child(8) { left: 94%; bottom: -15%; animation-delay: -14s; }
+      .aurora-ribbon {
+        position: fixed;
+        inset: auto -20% 12% -20%;
+        height: 220px;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.18;
+        filter: blur(28px);
+        background: linear-gradient(90deg, transparent, rgba(56, 232, 255, 0.55), rgba(167, 139, 250, 0.45), rgba(60, 255, 180, 0.38), transparent);
+        transform: rotate(-7deg);
+        animation: auroraSlide 18s ease-in-out infinite alternate;
+      }
+      @keyframes auroraSlide {
+        from { transform: translateX(-6%) rotate(-7deg) scaleY(0.85); }
+        to { transform: translateX(6%) rotate(-4deg) scaleY(1.08); }
+      }
       @keyframes particleRise {
         from { transform: translateY(0) scale(0.7); opacity: 0; }
         12% { opacity: 0.8; }
@@ -499,6 +515,66 @@
         background: linear-gradient(135deg, var(--cyan), var(--green));
         font-weight: 950;
       }
+      .command-deck {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 16px;
+        align-items: stretch;
+      }
+      .command-list {
+        display: grid;
+        gap: 10px;
+      }
+      .command-list span,
+      .value-pill {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 13px 14px;
+        border: 1px solid rgba(56, 232, 255, 0.16);
+        border-radius: 8px;
+        color: #dff8ff;
+        background: rgba(56, 232, 255, 0.07);
+        font-weight: 850;
+      }
+      .command-list span::after {
+        content: "ready";
+        color: var(--green);
+        font-size: 12px;
+      }
+      .cta-stage {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 22px;
+        align-items: center;
+        padding: 30px;
+        border: 1px solid rgba(60, 255, 180, 0.24);
+        border-radius: 8px;
+        background:
+          radial-gradient(circle at 85% 0%, rgba(60, 255, 180, 0.16), transparent 30%),
+          linear-gradient(135deg, rgba(56, 232, 255, 0.1), rgba(167, 139, 250, 0.08)),
+          rgba(8, 17, 34, 0.82);
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.38), 0 0 42px rgba(60, 255, 180, 0.08);
+        overflow: hidden;
+      }
+      .cta-stage::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        background-size: 28px 28px;
+        mask-image: radial-gradient(circle at 80% 20%, black, transparent 72%);
+        pointer-events: none;
+      }
+      .cta-stage h2,
+      .cta-stage p,
+      .cta-stage .actions {
+        position: relative;
+      }
       .mockup {
         min-height: 320px;
         display: grid;
@@ -663,6 +739,8 @@
         .premium-grid,
         .tier-compare,
         .unlock-grid,
+        .command-deck,
+        .cta-stage,
         .architecture,
         .vision {
           grid-template-columns: 1fr;
@@ -702,6 +780,7 @@
   <body>
     <div class="fog" aria-hidden="true"></div>
     <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="aurora-ribbon" aria-hidden="true"></div>
     <div class="particles" aria-hidden="true">
       <span></span><span></span><span></span><span></span>
       <span></span><span></span><span></span><span></span>
@@ -806,6 +885,30 @@
               <div class="preview-card"><strong>Node</strong><span>Lavalink ready</span></div>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="command-deck">
+          <div class="panel">
+            <div class="badge">Command Preview</div>
+            <h2>Server Ops In Seconds</h2>
+            <p>
+              IceyyBot is built around simple slash commands that feel immediate:
+              ask, moderate, play music, inspect status, redeem premium, and automate setup.
+            </p>
+            <div class="actions">
+              <a class="button" href="https://discord.com/oauth2/authorize?client_id=1162966703844642836&permissions=8&scope=bot%20applications.commands">Add to Discord</a>
+              <a class="button secondary" href="#premium">View Premium</a>
+            </div>
+          </div>
+          <div class="panel command-list">
+            <span>/ask generate a welcome system</span>
+            <span>/play start the queue</span>
+            <span>/warn review member history</span>
+            <span>/insights scan activity</span>
+            <span>/redeem unlock premium</span>
+          </div>
         </div>
       </section>
 
@@ -943,6 +1046,23 @@
               <div class="unlock">Priority processing</div>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="cta-stage">
+          <div>
+            <div class="badge">Ready To Launch</div>
+            <h2>Turn Your Discord Into A Command Center</h2>
+            <p>
+              Start free, test the core systems, then upgrade when your server is ready
+              for unlimited supported AI, music, automation, and premium intelligence.
+            </p>
+          </div>
+          <div class="actions">
+            <a class="button" href="https://bot.exnerlabs.com/">Launch Dashboard</a>
+            <a class="button secondary" href="https://buy.stripe.com/fZu7sFflYfbG6Zw4nd3sI02">Buy Premium</a>
+          </div>
         </div>
       </section>
 
