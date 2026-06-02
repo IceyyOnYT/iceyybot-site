@@ -490,7 +490,7 @@
       .use-grid,
       .premium-grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 16px;
       }
       .feature-card,
@@ -1111,44 +1111,62 @@
 
       <section class="section" id="premium">
         <div class="section-head">
-          <h2>Premium That Feels Worth It</h2>
-          <p>Premium should feel like unlocking the full operating system, not just removing a limit.</p>
+          <h2>Simple Pricing, Clear Upgrades</h2>
+          <p>Start free, upgrade to Premium when the server is active, then scale to Pro or Enterprise when your community grows.</p>
         </div>
         <div class="premium-grid">
           <article class="premium-card">
             <div class="badge">Free</div>
-            <h3>Trial Access</h3>
-            <p>Try core AI and music usage with daily limits before upgrading your server.</p>
+            <h3>Starter Server</h3>
+            <div class="price"><b>$0</b><span>/ month</span></div>
+            <p>Try IceyyBot before upgrading your server.</p>
             <ul class="checklist">
-              <li>Daily AI trial</li>
-              <li>Daily music trial</li>
-              <li>Basic server commands</li>
+              <li>Moderation</li>
+              <li>Music trial limits</li>
+              <li>Basic AI</li>
+              <li>Basic dashboard</li>
+              <li>1 server</li>
             </ul>
           </article>
           <article class="premium-card popular">
             <div class="badge">Most Popular</div>
             <h3>IceyyBot Premium</h3>
-            <div class="price"><b>$7.99</b><span>/ month</span></div>
-            <p>Unlock supported unlimited usage and premium tools for one Discord server.</p>
+            <div class="price"><b>$4.99</b><span>/ month</span></div>
+            <p>The main plan for active communities that want AI, tickets, automod, and analytics.</p>
             <ul class="checklist">
               <li>Advanced AI</li>
-              <li>Unlimited music</li>
-              <li>Server intelligence</li>
-              <li>Smart moderation</li>
-              <li>Custom AI personalities</li>
+              <li>AI summaries</li>
+              <li>Advanced automod</li>
+              <li>Ticket system</li>
+              <li>Analytics</li>
             </ul>
             <div class="actions">
               <a class="button" href="https://buy.stripe.com/fZu7sFflYfbG6Zw4nd3sI02">Buy Premium</a>
             </div>
           </article>
           <article class="premium-card">
-            <div class="badge">Platform Vision</div>
-            <h3>Next Generation</h3>
-            <p>ExnerLabs is building the next generation of AI-powered community infrastructure.</p>
+            <div class="badge">Pro</div>
+            <h3>Multi-Server Ops</h3>
+            <div class="price"><b>$9.99</b><span>/ month</span></div>
+            <p>For owners running multiple servers or larger communities.</p>
             <ul class="checklist">
-              <li>Deeper analytics</li>
-              <li>More AI workflows</li>
-              <li>Better automation</li>
+              <li>Everything in Premium</li>
+              <li>Multiple servers</li>
+              <li>Priority AI</li>
+              <li>Advanced analytics</li>
+              <li>Custom branding</li>
+            </ul>
+          </article>
+          <article class="premium-card">
+            <div class="badge">Enterprise</div>
+            <h3>Large Communities</h3>
+            <div class="price"><b>$19.99+</b><span>/ month</span></div>
+            <p>For high-volume communities that need support and custom platform work.</p>
+            <ul class="checklist">
+              <li>Large communities</li>
+              <li>Custom commands</li>
+              <li>Dedicated support</li>
+              <li>White-label dashboard</li>
             </ul>
           </article>
         </div>
@@ -1167,14 +1185,14 @@
           <article class="tier-panel premium-tier">
             <div class="badge">Premium Unlock</div>
             <h3>Full Control Mode</h3>
-            <p>Premium makes the bot feel like a full server operating system.</p>
+            <p>Premium is the recommended plan at $4.99/month and makes the bot feel like a full server operating system.</p>
             <div class="unlock-grid">
-              <div class="unlock">AI Memory</div>
+              <div class="unlock">Advanced AI</div>
+              <div class="unlock">AI summaries</div>
               <div class="unlock">Advanced analytics</div>
               <div class="unlock">Smart moderation</div>
-              <div class="unlock">Unlimited music</div>
-              <div class="unlock">Custom AI personalities</div>
-              <div class="unlock">Priority processing</div>
+              <div class="unlock">Ticket system</div>
+              <div class="unlock">Advanced automod</div>
             </div>
           </article>
         </div>
