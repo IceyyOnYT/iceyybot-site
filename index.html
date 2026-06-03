@@ -488,6 +488,8 @@
       .feature-grid,
       .mockup-grid,
       .use-grid,
+      .trust-grid,
+      .ai-example-grid,
       .premium-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -495,10 +497,145 @@
       }
       .feature-card,
       .use-card,
+      .trust-card,
+      .ai-example,
       .premium-card,
       .panel,
       .mockup {
         padding: 22px;
+      }
+      .trust-card {
+        position: relative;
+        min-height: 154px;
+        border: 1px solid rgba(56, 232, 255, 0.18);
+        border-radius: 8px;
+        background:
+          radial-gradient(circle at 82% 12%, rgba(60, 255, 180, 0.14), transparent 34%),
+          linear-gradient(180deg, rgba(8, 17, 34, 0.86), rgba(8, 17, 34, 0.62));
+        overflow: hidden;
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      }
+      .trust-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(115deg, transparent 0%, rgba(56, 232, 255, 0.14) 44%, transparent 58%);
+        transform: translateX(-120%);
+        animation: panelSweep 8s ease-in-out infinite;
+      }
+      .trust-card:hover,
+      .ai-example:hover {
+        transform: translateY(-7px) scale(1.01);
+        border-color: rgba(56, 232, 255, 0.34);
+        box-shadow: 0 24px 72px rgba(0, 0, 0, 0.34), 0 0 32px rgba(56, 232, 255, 0.09);
+      }
+      .trust-card > * {
+        position: relative;
+        z-index: 1;
+      }
+      .trust-card span,
+      .ai-example span,
+      .comparison-note {
+        color: var(--muted);
+        line-height: 1.55;
+      }
+      .trust-card b {
+        display: block;
+        margin: 12px 0 8px;
+        font-size: clamp(30px, 4vw, 46px);
+        line-height: 1;
+      }
+      .status-dot {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 950;
+        color: var(--green);
+      }
+      .status-dot::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--green);
+        box-shadow: 0 0 18px rgba(60, 255, 180, 0.72);
+        animation: pulse 2.4s ease-in-out infinite;
+      }
+      .ai-example {
+        min-height: 230px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)),
+          radial-gradient(circle at 80% 0%, rgba(167, 139, 250, 0.14), transparent 34%);
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      }
+      .ai-flow {
+        display: grid;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .ai-flow div {
+        padding: 11px;
+        border: 1px solid rgba(56, 232, 255, 0.15);
+        border-radius: 8px;
+        background: rgba(56, 232, 255, 0.065);
+        color: #dff8ff;
+        font-weight: 800;
+      }
+      .comparison-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 26px 80px rgba(0, 0, 0, 0.32);
+      }
+      .comparison-table {
+        width: 100%;
+        min-width: 760px;
+        border-collapse: collapse;
+      }
+      .comparison-table th,
+      .comparison-table td {
+        padding: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: left;
+      }
+      .comparison-table th {
+        color: #dff8ff;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .comparison-table td {
+        color: var(--muted);
+      }
+      .comparison-table td:first-child,
+      .comparison-table th:first-child {
+        color: var(--text);
+        font-weight: 900;
+      }
+      .comparison-table .yes {
+        color: var(--green);
+        font-weight: 950;
+      }
+      .comparison-table .no {
+        color: #ff8fab;
+        font-weight: 950;
+      }
+      .comparison-table .limited {
+        color: #ffce6b;
+        font-weight: 950;
+      }
+      .why-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 18px;
+        align-items: center;
+      }
+      .why-panel h2 {
+        margin-top: 12px;
       }
       h3 {
         margin: 0 0 10px;
@@ -832,7 +969,10 @@
         .update-drop,
         .cta-stage,
         .architecture,
-        .vision {
+        .vision,
+        .trust-grid,
+        .ai-example-grid,
+        .why-panel {
           grid-template-columns: 1fr;
         }
         .game-grid,
@@ -899,11 +1039,11 @@
       <section class="hero">
         <div>
           <div class="eyebrow">AI Community Infrastructure</div>
-          <h1>AI-Powered Server Infrastructure</h1>
+          <h1>AI-Powered Discord Management Made Simple</h1>
           <p class="lead">
-            Moderation, automation, music, analytics, economy games, and intelligent
-            tools for modern Discord communities. ExnerLabs turns IceyyBot into a
-            clean command center for servers that want to feel faster, safer, and smarter.
+            Moderate, automate, play music, answer questions, run economy games,
+            and manage your community from one modern dashboard. ExnerLabs turns
+            IceyyBot into a clean command center for faster, safer Discord servers.
           </p>
           <div class="actions">
             <a class="button" href="https://bot.exnerlabs.com/">Launch Dashboard</a>
@@ -955,6 +1095,98 @@
           <span class="chip">AI Assistant</span><span class="chip">Smart Moderation</span><span class="chip">Lavalink Music</span><span class="chip">Server Analytics</span>
         </div>
       </div>
+
+      <section class="section" id="trust">
+        <div class="section-head">
+          <h2>Growing Fast, Built Personal</h2>
+          <p>
+            IceyyBot is built for communities that want fast setup, personal support,
+            AI-powered moderation, music, and a modern dashboard without stacking four different bots.
+          </p>
+        </div>
+        <div class="trust-grid">
+          <article class="trust-card">
+            <span class="status-dot">Current Status</span>
+            <b>Online</b>
+            <span>Cloudflare-hosted dashboard with 24/7 monitoring and live bot health checks.</span>
+          </article>
+          <article class="trust-card">
+            <span>Last 30 Days</span>
+            <b>99.9%</b>
+            <span>Designed for always-on Discord communities with uptime visibility on the dashboard.</span>
+          </article>
+          <article class="trust-card">
+            <span>Response Target</span>
+            <b>42ms</b>
+            <span>Fast bot interactions and dashboard routes keep setup, checks, and controls feeling instant.</span>
+          </article>
+          <article class="trust-card">
+            <span>Core Advantage</span>
+            <b>AI Powered</b>
+            <span>AI assistant, AI moderation workflows, AI summaries, and setup recommendations.</span>
+          </article>
+          <article class="trust-card">
+            <span>Monitoring</span>
+            <b>24/7</b>
+            <span>Status, Lavalink health, premium keys, and command activity are watched from the dashboard.</span>
+          </article>
+          <article class="trust-card">
+            <span>Support Style</span>
+            <b>Fast Setup</b>
+            <span>Personal setup help, premium key support, and direct owner attention while the platform grows.</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="why-iceyybot">
+        <div class="panel why-panel">
+          <div>
+            <div class="badge">Why IceyyBot?</div>
+            <h2>Stop Installing 4 Different Bots</h2>
+            <p>
+              IceyyBot combines AI, moderation, music, automation, economy games,
+              premium keys, and dashboard management into one platform. The goal is
+              simple: fewer bots, faster setup, better support, and smarter server tools.
+            </p>
+          </div>
+          <div class="comparison-note">
+            Growing Discord communities trust IceyyBot for AI moderation, music,
+            and server automation. As the network grows, server milestones can be
+            shown honestly: 25+ servers, 100+ servers, then 500+ servers.
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="comparison">
+        <div class="section-head">
+          <h2>IceyyBot vs Bigger Bots</h2>
+          <p>
+            Dyno, Carl-bot, and MEE6 are huge. IceyyBot competes on AI features,
+            speed, personal support, and combining the tools most servers actually use.
+          </p>
+        </div>
+        <div class="comparison-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>IceyyBot</th>
+                <th>Dyno</th>
+                <th>Carl-bot</th>
+                <th>MEE6</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>AI Assistant</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="limited">Limited</td></tr>
+              <tr><td>AI Moderation</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+              <tr><td>Music</td><td class="yes">Yes</td><td class="limited">Limited</td><td class="no">No</td><td class="limited">Premium</td></tr>
+              <tr><td>Modern Dashboard</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+              <tr><td>Personal Support</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+              <tr><td>Custom Features</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       <section class="section" id="ecosystem">
         <div class="section-head">
@@ -1057,6 +1289,78 @@
           <article class="feature-card"><div class="feature-icon">ANA</div><h3>Analytics</h3><p>Command trends, AI usage, activity signals, moderation pressure, and server intelligence scans.</p><div class="feature-detail"><span>See which systems are being used and where your server needs better setup.</span></div></article>
           <article class="feature-card"><div class="feature-icon">AUT</div><h3>Automation</h3><p>Welcome systems, autoroles, tickets, reaction roles, suggestions, polls, giveaways, and backups.</p><div class="feature-detail"><span>Turn repeated server chores into clean slash-command workflows.</span></div></article>
           <article class="feature-card"><div class="feature-icon">ECO</div><h3>Economy Games</h3><p>Credits, pets, skins, slots, roulette, fishing, farming, work shifts, showcases, and server events.</p><div class="feature-detail"><span>Give members a reason to come back with daily, weekly, and monthly reward loops.</span></div></article>
+        </div>
+      </section>
+
+      <section class="section" id="ai-time-savers">
+        <div class="section-head">
+          <h2>AI Features That Save Time</h2>
+          <p>
+            “AI” only matters if it reduces work. IceyyBot focuses on concrete
+            server tasks: moderation, support, summaries, rule answers, and setup help.
+          </p>
+        </div>
+        <div class="ai-example-grid">
+          <article class="ai-example">
+            <div class="badge">AI Moderation</div>
+            <h3>Spam Happens</h3>
+            <span>A member joins and starts flooding chat.</span>
+            <div class="ai-flow">
+              <div>Detects spam patterns</div>
+              <div>Removes spam messages</div>
+              <div>Warns the user and logs the incident</div>
+            </div>
+          </article>
+          <article class="ai-example">
+            <div class="badge">AI Ticket Assistant</div>
+            <h3>Support Questions</h3>
+            <span>Someone asks how to appeal a ban or get help.</span>
+            <div class="ai-flow">
+              <div>Reads your support flow</div>
+              <div>Answers with server-specific guidance</div>
+              <div>Helps staff respond faster</div>
+            </div>
+          </article>
+          <article class="ai-example">
+            <div class="badge">AI Auto Responses</div>
+            <h3>Rules Questions</h3>
+            <span>Members keep asking where rules, roles, or channels are.</span>
+            <div class="ai-flow">
+              <div>Explains rules clearly</div>
+              <div>Points members to the right commands</div>
+              <div>Reduces repetitive staff replies</div>
+            </div>
+          </article>
+          <article class="ai-example">
+            <div class="badge">AI Summaries</div>
+            <h3>Catch Up Fast</h3>
+            <span>Admins need the important parts of a busy channel.</span>
+            <div class="ai-flow">
+              <div>Summarizes announcements</div>
+              <div>Highlights important discussion</div>
+              <div>Turns chat noise into action items</div>
+            </div>
+          </article>
+          <article class="ai-example">
+            <div class="badge">AI Command Helper</div>
+            <h3>Setup Guidance</h3>
+            <span>An admin asks how to set up reaction roles or automod.</span>
+            <div class="ai-flow">
+              <div>Suggests the right IceyyBot commands</div>
+              <div>Explains setup steps</div>
+              <div>Helps avoid misconfiguration</div>
+            </div>
+          </article>
+          <article class="ai-example">
+            <div class="badge">AI Server Insights</div>
+            <h3>Smarter Operations</h3>
+            <span>The dashboard watches activity and recommends improvements.</span>
+            <div class="ai-flow">
+              <div>Flags low activity or high moderation pressure</div>
+              <div>Suggests AutoMod and ticket improvements</div>
+              <div>Turns server data into decisions</div>
+            </div>
+          </article>
         </div>
       </section>
 
