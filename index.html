@@ -165,11 +165,20 @@
         padding: 28px 0 54px;
       }
       nav {
+        position: sticky;
+        top: 14px;
+        z-index: 80;
         min-height: 66px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 16px;
+        padding: 10px 12px;
+        border: 1px solid rgba(56, 232, 255, 0.14);
+        border-radius: 8px;
+        background: rgba(5, 11, 22, 0.62);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 18px 70px rgba(0, 0, 0, 0.26);
       }
       .brand,
       .navlinks,
@@ -1216,7 +1225,7 @@
     </div>
     <main>
       <nav>
-        <a class="brand" href="#top" aria-label="Back to top">
+        <a class="brand smart-home-link" href="https://exnerlabs.com/" data-home-url="https://exnerlabs.com/" aria-label="ExnerLabs home">
           <div class="logo">E</div>
           <span>ExnerLabs</span>
         </a>
@@ -1967,6 +1976,20 @@
         document.documentElement.style.setProperty("--mouse-x", event.clientX + "px");
         document.documentElement.style.setProperty("--mouse-y", event.clientY + "px");
       });
+      const smartHomeLink = document.querySelector(".smart-home-link");
+      if (smartHomeLink) {
+        let lastSmartHomeClick = 0;
+        smartHomeLink.addEventListener("click", (event) => {
+          const now = Date.now();
+          if (now - lastSmartHomeClick < 650) {
+            window.location.href = smartHomeLink.dataset.homeUrl || "https://exnerlabs.com/";
+            return;
+          }
+          event.preventDefault();
+          lastSmartHomeClick = now;
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
       setInterval(() => {
         const img = new Image();
         img.src = "https://bot.exnerlabs.com/api/visit.gif?site=exnerlabs.com&path=/&heartbeat=1&t=" + Date.now();
