@@ -946,6 +946,111 @@
         display: grid;
         gap: 12px;
       }
+      .cosmic-stage {
+        position: relative;
+        min-height: 520px;
+        padding: 28px;
+        overflow: hidden;
+        border: 1px solid rgba(56, 232, 255, 0.18);
+        border-radius: 8px;
+        background:
+          radial-gradient(circle at 50% 50%, rgba(56, 232, 255, 0.2), transparent 18%),
+          radial-gradient(circle at 22% 20%, rgba(167, 139, 250, 0.18), transparent 28%),
+          radial-gradient(circle at 80% 82%, rgba(60, 255, 180, 0.16), transparent 24%),
+          rgba(8, 17, 34, 0.78);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 32px 96px rgba(0, 0, 0, 0.42), inset 0 0 70px rgba(56, 232, 255, 0.04);
+      }
+      .cosmic-stage::before,
+      .cosmic-stage::after {
+        content: "";
+        position: absolute;
+        inset: 13%;
+        border: 1px solid rgba(56, 232, 255, 0.16);
+        border-radius: 999px;
+        animation: orbitSpin 24s linear infinite;
+      }
+      .cosmic-stage::after {
+        inset: 24%;
+        border-color: rgba(60, 255, 180, 0.14);
+        animation-duration: 18s;
+        animation-direction: reverse;
+      }
+      .cosmic-core {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: min(320px, 70vw);
+        min-height: 210px;
+        padding: 24px;
+        display: grid;
+        place-content: center;
+        text-align: center;
+        border: 1px solid rgba(56, 232, 255, 0.28);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(8, 17, 34, 0.92), rgba(8, 17, 34, 0.74)),
+          radial-gradient(circle at 50% 0%, rgba(56, 232, 255, 0.2), transparent 46%);
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 70px rgba(56, 232, 255, 0.12);
+      }
+      .cosmic-core h3 {
+        margin: 0;
+        font-size: clamp(28px, 4vw, 46px);
+        line-height: 0.96;
+      }
+      .orbit-card {
+        position: absolute;
+        z-index: 2;
+        width: min(250px, calc(100% - 40px));
+        padding: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        background: rgba(9, 20, 39, 0.82);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 22px 70px rgba(0, 0, 0, 0.32);
+        transition: transform 180ms ease, border-color 180ms ease;
+      }
+      .orbit-card:hover {
+        transform: translateY(-7px) scale(1.02);
+        border-color: rgba(60, 255, 180, 0.38);
+      }
+      .orbit-card strong,
+      .orbit-card span {
+        display: block;
+      }
+      .orbit-card span {
+        margin-top: 8px;
+        color: var(--muted);
+        line-height: 1.45;
+        font-size: 13px;
+      }
+      .orbit-card:nth-of-type(2) { left: 4%; top: 12%; }
+      .orbit-card:nth-of-type(3) { right: 4%; top: 16%; }
+      .orbit-card:nth-of-type(4) { left: 7%; bottom: 12%; }
+      .orbit-card:nth-of-type(5) { right: 7%; bottom: 12%; }
+      .orbit-card:nth-of-type(6) { left: 50%; top: 4%; transform: translateX(-50%); }
+      .orbit-card:nth-of-type(6):hover { transform: translateX(-50%) translateY(-7px) scale(1.02); }
+      .comet-lane {
+        position: absolute;
+        left: -20%;
+        right: -20%;
+        top: 50%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(56, 232, 255, 0.0), rgba(56, 232, 255, 0.55), transparent);
+        transform: rotate(-12deg);
+        animation: cometSweep 5.5s ease-in-out infinite;
+      }
+      @keyframes orbitSpin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes cometSweep {
+        0%, 100% { opacity: 0; transform: translateX(-18%) rotate(-12deg); }
+        40%, 60% { opacity: 1; }
+        100% { transform: translateX(18%) rotate(-12deg); }
+      }
       footer {
         padding: 42px 0 14px;
       }
@@ -972,8 +1077,24 @@
         .vision,
         .trust-grid,
         .ai-example-grid,
-        .why-panel {
+        .why-panel,
+        .cosmic-stage {
           grid-template-columns: 1fr;
+        }
+        .cosmic-stage {
+          min-height: auto;
+          display: grid;
+          gap: 12px;
+        }
+        .cosmic-core,
+        .orbit-card {
+          position: relative;
+          left: auto !important;
+          right: auto !important;
+          top: auto !important;
+          bottom: auto !important;
+          width: auto;
+          transform: none !important;
         }
         .game-grid,
         .update-metrics {
@@ -1623,6 +1744,26 @@
             <h3>What Is White-Label?</h3>
             <p>Enterprise can brand a dashboard around your community with custom naming, accent colors, domain support, and custom workflows.</p>
           </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Orbital Platform Map</h2>
+          <p>One animated view of the whole ExnerLabs system: the bot, dashboard, AI layer, premium engine, and enterprise control surface.</p>
+        </div>
+        <div class="cosmic-stage">
+          <div class="comet-lane" aria-hidden="true"></div>
+          <div class="cosmic-core">
+            <div class="badge">ExnerLabs Core</div>
+            <h3>One Bot. One Dashboard. One Control System.</h3>
+            <p>Everything routes back to cleaner community operations.</p>
+          </div>
+          <article class="orbit-card"><strong>AI Server Brain</strong><span>Rules answers, summaries, setup ideas, moderation suggestions, and ticket assistance.</span></article>
+          <article class="orbit-card"><strong>Premium Engine</strong><span>Stripe checkout, redeemable keys, Discord account gifting, and plan-aware unlocks.</span></article>
+          <article class="orbit-card"><strong>Economy Universe</strong><span>Credits, jobs, pets, fishing, games, inventory, leaderboards, and server events.</span></article>
+          <article class="orbit-card"><strong>Enterprise Layer</strong><span>White-label dashboards, custom commands, onboarding, branding, and dedicated support.</span></article>
+          <article class="orbit-card"><strong>Live Ops Deck</strong><span>Status, analytics, command catalog, system health, and owner control room.</span></article>
         </div>
       </section>
 
