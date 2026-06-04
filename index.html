@@ -1042,6 +1042,62 @@
         transform: rotate(-12deg);
         animation: cometSweep 5.5s ease-in-out infinite;
       }
+      .deep-space-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .space-link-card {
+        position: relative;
+        min-height: 220px;
+        padding: 22px;
+        overflow: hidden;
+        border: 1px solid rgba(56, 232, 255, 0.16);
+        border-radius: 8px;
+        background:
+          radial-gradient(circle at 82% 12%, rgba(60, 255, 180, 0.16), transparent 24%),
+          radial-gradient(circle at 10% 90%, rgba(167, 139, 250, 0.13), transparent 26%),
+          linear-gradient(180deg, rgba(8, 17, 34, 0.86), rgba(8, 17, 34, 0.58));
+        backdrop-filter: blur(18px);
+        box-shadow: 0 28px 88px rgba(0, 0, 0, 0.32), inset 0 0 70px rgba(56, 232, 255, 0.025);
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      }
+      .space-link-card::before {
+        content: "";
+        position: absolute;
+        inset: 16px;
+        border: 1px solid rgba(56, 232, 255, 0.09);
+        border-radius: 8px;
+        transform: skewY(-4deg);
+      }
+      .space-link-card::after {
+        content: "";
+        position: absolute;
+        left: -30%;
+        right: -30%;
+        bottom: 22px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(56, 232, 255, 0.86), rgba(60, 255, 180, 0.72), transparent);
+        animation: cometSweep 6s ease-in-out infinite;
+      }
+      .space-link-card:hover {
+        transform: translateY(-10px) scale(1.01);
+        border-color: rgba(60, 255, 180, 0.4);
+        box-shadow: 0 34px 100px rgba(0, 0, 0, 0.42), 0 0 40px rgba(56, 232, 255, 0.1);
+      }
+      .space-link-card h3,
+      .space-link-card p,
+      .space-link-card .button {
+        position: relative;
+        z-index: 1;
+      }
+      .space-link-card h3 {
+        margin-top: 18px;
+        font-size: 26px;
+      }
+      .space-link-card p {
+        min-height: 76px;
+      }
       @keyframes orbitSpin {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
@@ -1078,6 +1134,7 @@
         .trust-grid,
         .ai-example-grid,
         .why-panel,
+        .deep-space-grid,
         .cosmic-stage {
           grid-template-columns: 1fr;
         }
@@ -1768,6 +1825,51 @@
       </section>
 
       <section class="section">
+        <div class="section-head">
+          <h2>Deep Space Launch Paths</h2>
+          <p>Big, clean routes into the IceyyBot universe. Each one opens a different control surface for customers, admins, or curious server owners.</p>
+        </div>
+        <div class="deep-space-grid">
+          <article class="space-link-card">
+            <div class="badge">Mission Control</div>
+            <h3>Launch Dashboard</h3>
+            <p>Open the live IceyyBot dashboard for status, analytics, premium, server cards, command systems, and account flows.</p>
+            <a class="button" href="https://bot.exnerlabs.com/">Open Dashboard</a>
+          </article>
+          <article class="space-link-card">
+            <div class="badge">Star Map</div>
+            <h3>Galaxy Map</h3>
+            <p>Explore AI, music, premium, Enterprise, economy, and commands as one connected platform orbit.</p>
+            <a class="button secondary" href="https://bot.exnerlabs.com/galaxy">Open Galaxy</a>
+          </article>
+          <article class="space-link-card">
+            <div class="badge">Command Core</div>
+            <h3>Command Catalog</h3>
+            <p>Browse every loaded slash command across AI, music, moderation, games, economy, Pro, and Enterprise.</p>
+            <a class="button secondary" href="https://bot.exnerlabs.com/commands">View Commands</a>
+          </article>
+          <article class="space-link-card">
+            <div class="badge">Launch Feed</div>
+            <h3>Update Center</h3>
+            <p>Show new users what shipped recently and where IceyyBot is heading next.</p>
+            <a class="button secondary" href="https://bot.exnerlabs.com/updates">View Updates</a>
+          </article>
+          <article class="space-link-card">
+            <div class="badge">Signal Check</div>
+            <h3>Status Deck</h3>
+            <p>Public-friendly health checks for Discord, Lavalink, OpenAI, premium keys, uptime, and activity signals.</p>
+            <a class="button secondary" href="https://bot.exnerlabs.com/status">Check Status</a>
+          </article>
+          <article class="space-link-card">
+            <div class="badge">User Orbit</div>
+            <h3>Account Bay</h3>
+            <p>Sign in with Discord, view connected keys, redeem faster, and gift unused premium access.</p>
+            <a class="button secondary" href="https://bot.exnerlabs.com/account">Open Account</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
         <div class="cta-stage">
           <div>
             <div class="badge">New Platform Pages</div>
@@ -1778,6 +1880,7 @@
             </p>
           </div>
           <div class="actions">
+            <a class="button" href="https://bot.exnerlabs.com/galaxy">Galaxy Map</a>
             <a class="button" href="https://bot.exnerlabs.com/commands">Command Catalog</a>
             <a class="button secondary" href="https://bot.exnerlabs.com/updates">Update Center</a>
             <a class="button secondary" href="https://bot.exnerlabs.com/status">System Status</a>
