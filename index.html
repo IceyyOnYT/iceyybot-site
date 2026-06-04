@@ -180,7 +180,17 @@
         gap: 12px;
         flex-wrap: wrap;
       }
-      .brand { font-weight: 950; letter-spacing: 0.02em; }
+      .brand {
+        color: var(--text);
+        font-weight: 950;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        transition: transform 160ms ease, filter 160ms ease;
+      }
+      .brand:hover {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 0 18px rgba(56, 232, 255, 0.24));
+      }
       .logo {
         width: 40px;
         height: 40px;
@@ -1189,7 +1199,7 @@
       }
     </style>
   </head>
-  <body>
+  <body id="top">
     <div class="fog" aria-hidden="true"></div>
     <div class="cursor-glow" aria-hidden="true"></div>
     <div class="aurora-ribbon" aria-hidden="true"></div>
@@ -1199,10 +1209,10 @@
     </div>
     <main>
       <nav>
-        <div class="brand">
+        <a class="brand" href="#top" aria-label="Back to top">
           <div class="logo">E</div>
           <span>ExnerLabs</span>
-        </div>
+        </a>
         <div class="navlinks">
           <a href="#ecosystem">Ecosystem</a>
           <a href="#features">Features</a>
@@ -1855,6 +1865,12 @@
             <a class="button secondary" href="https://bot.exnerlabs.com/observatory">Open Observatory</a>
           </article>
           <article class="space-link-card">
+            <div class="badge">Portal</div>
+            <h3>Nebula Gate</h3>
+            <p>Choose the right orbit fast: dashboard, pricing, commands, account, status, or the cosmic tour.</p>
+            <a class="button secondary" href="https://bot.exnerlabs.com/nebula">Open Nebula</a>
+          </article>
+          <article class="space-link-card">
             <div class="badge">Command Core</div>
             <h3>Command Catalog</h3>
             <p>Browse every loaded slash command across AI, music, moderation, games, economy, Pro, and Enterprise.</p>
@@ -1895,6 +1911,7 @@
             <a class="button" href="https://bot.exnerlabs.com/galaxy">Galaxy Map</a>
             <a class="button secondary" href="https://bot.exnerlabs.com/blackhole">Blackhole Core</a>
             <a class="button secondary" href="https://bot.exnerlabs.com/observatory">Observatory</a>
+            <a class="button secondary" href="https://bot.exnerlabs.com/nebula">Nebula Gate</a>
             <a class="button" href="https://bot.exnerlabs.com/commands">Command Catalog</a>
             <a class="button secondary" href="https://bot.exnerlabs.com/updates">Update Center</a>
             <a class="button secondary" href="https://bot.exnerlabs.com/status">System Status</a>
